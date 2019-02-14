@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "350444410896",
+    "firebase_url": "https://twitter-chat-231323.firebaseio.com",
+    "project_id": "twitter-chat-231323",
+    "storage_bucket": "twitter-chat-231323.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350444410896:android:cb114f8268f66e06",
+        "android_client_info": {
+          "package_name": "com.twitterrn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350444410896-373udbfr0lh5b4rns5et2jrmrcijo9dc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_4nI8430PBngnf5d9ekaMl0EmF11iVaw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
