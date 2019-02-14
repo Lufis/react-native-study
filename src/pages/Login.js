@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-
 import { KeyboardAvoidingView, View, TextInput, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
@@ -28,11 +25,12 @@ export default class Login extends Component {
   };
 
   async componentDidMount() {
-
     const isLogged = await AsyncStorage.getItem("@OmniStack:isLogged")
-    username = await AsyncStorage.getItem("@OmniStack:username")
+    const username = await AsyncStorage.getItem("@OmniStack:username")
+
     this.setState({ username });
-    if (isLogged == "logado") {
+
+    if (isLogged == "true") {
       this.props.navigation.navigate('App')
     }
   }
@@ -56,9 +54,12 @@ export default class Login extends Component {
 
     this.setState({ isLogged: true })
     if (!username.length) return;
-    await AsyncStorage.setItem('@OmniStack:isLogged', 'logado');
+
+    await AsyncStorage.setItem('@OmniStack:isLogged', 'true');
     await AsyncStorage.setItem('@OmniStack:username', username);
+
     console.log(username)
+
     this.props.navigation.navigate('App')
   }
 
@@ -77,8 +78,8 @@ export default class Login extends Component {
             placeholder="Nome de usuário"
             value={this.state.username}
             onChangeText={this.handleInputChange}
-          //onSubmitEditing={this.handleLogin}
-            returnKeyType="send"
+            //onSubmitEditing={this.handleLogin}
+            returnKeyType="next"
           />
           <TextInput
             style={styles.input}
@@ -86,20 +87,16 @@ export default class Login extends Component {
             value={this.state.password}
             onChangeText={this.handlePasswordChange}
             onSubmitEditing={this.handleLogin}
-            returnKeyType="send"
+            returnKeyType="next"
           />
           <View style={styles.containerButtons}>
-            <TouchableOpacity onPress={this.handleLogin} style={styles.button}>
-              <View style={styles.containerButtons}>
-                <MaterialIcons name="lock" size={16} color="#FFFFFF" style={styles.iconButtonText} />
-                <Text style={styles.buttonText}>Entrar</ Text>
-              </View>
+            <TouchableOpacity onPress={this.handleLogin} style={[styles.button, styles.containerButtons]}>
+              <MaterialIcons name="lock" size={16} color="#FFFFFF" style={styles.iconButtonText} />
+              <Text style={styles.buttonText}>Entrar</ Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.handleRegister} style={styles.buttonSignUp}>
-              <View style={styles.containerButtons}>
-                <MaterialIcons name="person-add" size={16} color="#FFFFFF" style={styles.iconButtonText} />
-                <Text style={styles.buttonText}>Cadastre-se!</ Text>
-              </View>
+            <TouchableOpacity onPress={this.handleRegister} style={[styles.buttonSignUp, styles.containerButtons]}>
+              <MaterialIcons name="person-add" size={16} color="#FFFFFF" style={styles.iconButtonText} />
+              <Text style={styles.buttonText}>Cadastre-se!</ Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -183,7 +180,6 @@ const styles = StyleSheet.create({
 
   iconButtonText: {
     marginRight: 5,
-
   },
 
   buttonSignUp: {
