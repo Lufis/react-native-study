@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-
-import { SafeAreaView, KeyboardAvoidingView, View, TextInput, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-native';
-
+import {
+    SafeAreaView, KeyboardAvoidingView,
+    View, TextInput,
+    TouchableOpacity, Text,
+    StyleSheet, AsyncStorage
+} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-
-export default class Register extends Component {
+export default class RegisterPage extends Component {
     static navigationOptions = {
         header: null
-      };
-    
-    
-      goBack = () => {
+    };
+
+    goBack = () => {
         this.props.navigation.navigate('Login');
-      };
+    };
 
     render() {
         return (
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center"
-      },    
+    },
 
     containerButtons: {
         flexDirection: 'row',

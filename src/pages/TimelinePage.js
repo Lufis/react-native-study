@@ -5,26 +5,27 @@ import Tweet from '../components/Tweet'
 import Icon from 'react-native-vector-icons/Ionicons';
 import socket from 'socket.io-client';
 
-export default class Timeline extends Component {
+export default class TimelinePage extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitleStyle: {
-      fontFamily: "Montserrat-Regular",
+      fontFamily: "sans-serif-light",
       fontSize: 16,
-      fontWeight: "normal",
-      textAlign: "center",
+      fontWeight: "bold",
+      textAlign: "left",
       flex: 1,
-      width: "35%"
+      color: "#4BB0EE"
     },
-    headerLeft: (
-      <View style={{ marginLeft: 10 }}>
-        <Button
-          title="Sair"
-          onPress={async () => {
-            await AsyncStorage.setItem('@OmniStack:isLogged', 'false');
-            navigation.navigate('Login');
-          }} />
-      </View>
-    )
+    headerTitle: "Timeline"
+  //  headerLeft: (
+  //     <View style={{ marginLeft: 10 }}>
+  //       <Button
+  //         title="Sair"
+  //          onPress={async () => {
+  //           await AsyncStorage.setItem('@OmniStack:isLogged', 'false');
+  //           navigation.navigate('Login');
+  //         }} />
+  //     </View>
+  //   )
   });
 
   state = {
@@ -40,7 +41,7 @@ export default class Timeline extends Component {
   }
 
   subscribeToEvents = () => {
-    const io = socket('http://192.168.1.124:3000')
+    const io = socket('https://twitter-chat.herokuapp.com/')
 
     io.on('tweet', data => {
       this.setState({ tweets: [data, ...this.state.tweets] })
@@ -78,7 +79,7 @@ export default class Timeline extends Component {
         />
 
         <TouchableOpacity
-          onPress={() => { this.props.navigation.navigate('New') }}
+          onPress={() => { this.props.navigation.navigate('NewTweet') }}
           style={[styles.floatButton, styles.newTweetButton]}>
           <Icon
             color="#FFF"

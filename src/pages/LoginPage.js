@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, View, TextInput, TouchableOpacity, Text, StyleSheet, AsyncStorage } from 'react-native';
+import {
+  KeyboardAvoidingView, View,
+  TextInput, TouchableOpacity,
+  Text, StyleSheet,
+  AsyncStorage
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
 
 import Dialog, {
   DialogTitle,
@@ -11,8 +15,7 @@ import Dialog, {
   DialogButton,
 } from 'react-native-popup-dialog';
 
-
-export default class Login extends Component {
+export default class LoginPage extends Component {
   static navigationOptions = {
     header: null
   };
@@ -31,7 +34,7 @@ export default class Login extends Component {
     this.setState({ username });
 
     if (isLogged == "true") {
-      this.props.navigation.navigate('App')
+      this.props.navigation.navigate('Home')
     }
   }
 
@@ -60,7 +63,7 @@ export default class Login extends Component {
 
     console.log(username)
 
-    this.props.navigation.navigate('App')
+    this.props.navigation.navigate('Home')
   }
 
   handleRegister = async () => {

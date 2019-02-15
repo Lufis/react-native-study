@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-
-import { SafeAreaView, View, Text, TouchableOpacity, TextInput, AsyncStorage, StyleSheet } from 'react-native';
-
+import {
+  SafeAreaView,
+  View, Text,
+  TouchableOpacity, TextInput,
+  AsyncStorage, StyleSheet
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
 import api from '../services/api';
 
-export default class New extends Component {
+export default class NewTweetPage extends Component {
   static navigationOptions = {
     header: null
   };
@@ -22,7 +24,7 @@ export default class New extends Component {
   handleTweet = async () => {
     const content = this.state.newTweet;
     const author = await AsyncStorage.getItem('@OmniStack:username');
-    await api.post('tweets', {author, content});
+    await api.post('tweets', { author, content });
     this.goBack();
   };
 
@@ -30,7 +32,7 @@ export default class New extends Component {
     this.setState({ newTweet });
   };
 
-  
+
 
   render() {
     return (

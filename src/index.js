@@ -7,7 +7,7 @@ import firebase from 'react-native-firebase';
 YellowBox.ignoreWarnings(["Unrecognized WebSocket"]);
 YellowBox.ignoreWarnings(["Remote debugger is in a"]);
 YellowBox.ignoreWarnings(['Require cycle:']);
-
+YellowBox.ignoreWarnings(['WebView has been extracted'])
 
 export default class App extends Component {
   async componentDidMount() {
@@ -15,6 +15,7 @@ export default class App extends Component {
     this.createNotificationListeners(); //add this line
   }
 
+  // check if app has permitions to receive notifications
   async checkPermission() {
     const enabled = await firebase.messaging().hasPermission();
     if (enabled) {
@@ -25,7 +26,7 @@ export default class App extends Component {
     }
   }
 
-  //3
+  // get the device firebase cloud messaging (fcm) token
   async getToken() {
     let fcmToken = await AsyncStorage.getItem('fcmToken');
     console.log(fcmToken);
@@ -37,7 +38,7 @@ export default class App extends Component {
     }
   }
 
-  //2
+  // request for permission to receive notifications
   async requestPermission() {
     try {
       await firebase.messaging().requestPermission();
