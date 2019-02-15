@@ -27,6 +27,14 @@ const timelineStackNavigator = createStackNavigator({
     {
         defaultNavigationOptions: ({ navigation }) => {
             return {
+                headerTitleStyle: {
+                    fontFamily: "sans-serif-light",
+                    fontSize: 16,
+                    fontWeight: "bold",
+                    textAlign: "left",
+                    flex: 1,
+                    color: "#4BB0EE"
+                },
                 headerLeft: (
                     <MaterialIcons
                         name="menu"

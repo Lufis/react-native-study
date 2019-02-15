@@ -7,25 +7,7 @@ import socket from 'socket.io-client';
 
 export default class TimelinePage extends Component {
   static navigationOptions = ({ navigation }) => ({
-    headerTitleStyle: {
-      fontFamily: "sans-serif-light",
-      fontSize: 16,
-      fontWeight: "bold",
-      textAlign: "left",
-      flex: 1,
-      color: "#4BB0EE"
-    },
     headerTitle: "Timeline"
-  //  headerLeft: (
-  //     <View style={{ marginLeft: 10 }}>
-  //       <Button
-  //         title="Sair"
-  //          onPress={async () => {
-  //           await AsyncStorage.setItem('@OmniStack:isLogged', 'false');
-  //           navigation.navigate('Login');
-  //         }} />
-  //     </View>
-  //   )
   });
 
   state = {
