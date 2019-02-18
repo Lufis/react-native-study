@@ -11,7 +11,8 @@ import LoginPage from './pages/LoginPage';
 import TimelinePage from './pages/TimelinePage';
 import NewTweetPage from './pages/NewTweetPage';
 import RegisterPAge from './pages/RegisterPage';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Drawer from './components/Drawer';
 
 //Login page
 const loginStackNavigator = createStackNavigator({
@@ -36,7 +37,7 @@ const timelineStackNavigator = createStackNavigator({
                     color: "#4BB0EE"
                 },
                 headerLeft: (
-                    <MaterialIcons
+                    <MaterialIcon
                         name="menu"
                         size={30}
                         style={{ paddingLeft: 10 }}
@@ -51,20 +52,17 @@ const timelineStackNavigator = createStackNavigator({
 //Home Page
 const homePageDrawerNavigator = createDrawerNavigator({
     TimeLine: {
-        screen: timelineStackNavigator
+        screen: timelineStackNavigator,
+        navigationOptions: {
+            drawerLabel: 'Home',
+            drawerIcon: ({ tintColor }) => (<MaterialIcon name="home" color={tintColor} size={25}/>)
+        }
     }
 }, {
         contentComponent: (props) => (
-            <View style={{ flex: 1 }}>
-                <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
-                    <DrawerItems {...props} />
-                    <Button title="Logout" onPress={async () => {
-                        await AsyncStorage.setItem('@OmniStack:isLogged', 'false');
-                        props.navigation.navigate('Login')
-                    }} />
-                </SafeAreaView>
-            </View>
-        ),
+            <Drawer props={props} />
+        )
+
     });
 
 //App

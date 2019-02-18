@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import api from '../services/api';
-import { View, FlatList, StyleSheet, TouchableOpacity, AsyncStorage, Button } from 'react-native';
+import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import Tweet from '../components/Tweet'
-import Icon from 'react-native-vector-icons/Ionicons';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 import socket from 'socket.io-client';
 
 export default class TimelinePage extends Component {
@@ -14,7 +14,7 @@ export default class TimelinePage extends Component {
     tweets: [],
     refreshing: false
   };
-  
+
   async componentDidMount() {
     this.subscribeToEvents();
 
@@ -63,11 +63,7 @@ export default class TimelinePage extends Component {
         <TouchableOpacity
           onPress={() => { this.props.navigation.navigate('NewTweet') }}
           style={[styles.floatButton, styles.newTweetButton]}>
-          <Icon
-            color="#FFF"
-            name="md-add"
-            size={35}
-          />
+          <IonIcon color="#FFF" name="md-add" size={35} />
         </TouchableOpacity>
       </View>
     );
