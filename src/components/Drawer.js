@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { SafeAreaView, View, Button, AsyncStorage, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+    SafeAreaView, View,
+    ScrollView, Button,
+    AsyncStorage, Text,
+    StyleSheet, TouchableOpacity,
+    Dimensions
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { DrawerItems } from 'react-navigation';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class Drawer extends Component {
     state = {
@@ -21,12 +27,13 @@ export default class Drawer extends Component {
         const { props } = this.props
 
         return (
-            <View style={{ flex: 1 }}>
-                <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+            <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
+                <ScrollView contentContainerStyle={{  }}>
+
                     <LinearGradient colors={['#4BB0EE', '#4c669f', '#3b5998']} style={styles.linearGradient}>
                         <View style={styles.userInfo}>
                             <TouchableOpacity style={styles.userAvatar}>
-                                <MaterialIcons name="person" color="#c9c9c9" size={50} />
+                                <MaterialIcon name="person" color="#c9c9c9" size={50} />
                             </TouchableOpacity>
                             <Text style={styles.userID}>{this.state.username}</Text>
                             <Text style={styles.userName}>Érico Júnior</Text>
@@ -35,21 +42,26 @@ export default class Drawer extends Component {
 
                     <DrawerItems {...props} />
 
-                    <TouchableOpacity onPress={async () => {
-                        await AsyncStorage.setItem('@OmniStack:isLogged', 'false');
-                        props.navigation.navigate('Login')
-                    }} >
-                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Logout</Text>
+                </ScrollView >
+
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity onPress={
+                        async () => {
+                            await AsyncStorage.setItem('@OmniStack:isLogged', 'false');
+                            props.navigation.navigate('Login')
+                        }} style={styles.item}>
+                        <MaterialIcon name="exit-to-app" size={25} style={styles.itemIcon} />
+                        <Text style={styles.itemLabel}>Sair</Text>
                     </TouchableOpacity>
-                </SafeAreaView>
-            </View>)
-            ;
+                </View>
+            </SafeAreaView>
+        );
     }
 }
 
 const styles = StyleSheet.create({
     linearGradient: {
-        height: "40%"
+        height: Dimensions.get('window').height * 0.2
     },
     userInfo: {
         position: 'absolute',
@@ -72,10 +84,22 @@ const styles = StyleSheet.create({
         marginTop: 5,
         color: "#c9c9c9"
     },
-    logoutButton: {
-        backgroundColor: '#4BB0EE',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        padding: 10
+    item: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    itemIcon: {
+        marginHorizontal: 16,
+        alignItems: 'center',
+    },
+    itemLabel: {
+        color: 'black',
+        fontWeight: 'bold',
+        margin: 16,
+    },
+    bottomContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end'
     }
 });

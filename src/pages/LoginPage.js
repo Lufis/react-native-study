@@ -79,8 +79,9 @@ export default class LoginPage extends Component {
           <TextInput
             style={styles.input}
             placeholder="Nome de usuário"
-            value={this.state.username}
+            //value={this.state.username}
             onChangeText={this.handleInputChange}
+            autoCapitalize="none"
             //onSubmitEditing={this.handleLogin}
             returnKeyType="next"
           />
