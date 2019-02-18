@@ -36,7 +36,7 @@ export default class Drawer extends Component {
                                 <MaterialIcon name="person" color="#c9c9c9" size={50} />
                             </TouchableOpacity>
                             <Text style={styles.userID}>{this.state.username}</Text>
-                            <Text style={styles.userName}>Érico Júnior</Text>
+                            <Text style={styles.userName}>Fulano de Tal</Text>
                         </View>
                     </LinearGradient>
 
